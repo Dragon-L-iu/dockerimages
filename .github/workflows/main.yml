@@ -7,5 +7,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: Pull Docker image
       run: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.17.22
+    - name: save 
+      run: docker save docker.elastic.co/elasticsearch/elasticsearch:7.17.22 -o image.tar
+    - name: Upload Docker image artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: docker-image
+        path: image.tar
+  download:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Download Docker image artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: docker-image
