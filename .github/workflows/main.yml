@@ -9,7 +9,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+      with: 
+        ref: main
     - name: Pull Docker image
       run: docker pull docker.elastic.co/elasticsearch/elasticsearch:7.17.22
       
