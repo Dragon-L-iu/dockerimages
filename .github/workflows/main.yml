@@ -18,7 +18,7 @@ jobs:
       run: docker save docker.elastic.co/elasticsearch/elasticsearch:7.17.22 -o image.tar
       
     - name: Upload Docker image artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: docker-image
         path: image.tar
